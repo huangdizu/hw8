@@ -89,19 +89,23 @@ sum(is.na(idiom))
 ## 四字格分類器 (60 分)
 
 中文裡面常常出現由四個字組合而成的表達方式，稱為四字格。四字格裡往往可以看到一些語言中的規律。
-你的任務是完成下方的 `classify()`。這個函數可以將輸入的四字格，依據其內部結構，分成 11 種類別：
+你的任務是完成下方的 `classify()`。這個函數可以將輸入的四字格，依據其內部結構，分成 13 種類別：
 
-1.  ABCC: 例如，「氣喘吁吁」、「書空咄咄」
-2.  ABCA: 例如，「精益求精」、「忍無可忍」
-3.  ABCB: 例如，「載舟覆舟」、「屨及劍及」
-4.  ABAC: 例如，「滿坑滿谷」、「不屈不撓」
-5.  ABBC: 例如，「雪山山脈」
-6.  AABC: 例如，「侃侃而談」、「洋洋自得」
-7.  AABB: 例如，「坦坦蕩蕩」、「吞吞吐吐」
-8.  ABAB: 例如，「慢來慢來」
-9.  ABBA: 例如，「ABBA」(合唱團)
-10. ABCD: 例如，「兩全其美」、「有夠討厭」
-11. AAAA: 例如，「哈哈哈哈」、「嘿嘿嘿嘿」
+1. ABCD: 例如，「兩全其美」、「有夠討厭」
+2. AABC: 例如，「侃侃而談」、「洋洋自得」
+3. ABAC: 例如，「滿坑滿谷」、「不屈不撓」
+4. ABBC: 例如，「雪山山脈」、「NCCU」
+5. ABCA: 例如，「精益求精」、「忍無可忍」
+6. ABCB: 例如，「載舟覆舟」、「屨及劍及」
+7. ABCC: 例如，「氣喘吁吁」、「書空咄咄」
+8. AAAB: 例如，「屁屁屁啦」(結巴)
+9. AABA: 例如，「一一得一」(九九乘法表)
+10. AABB: 例如，「坦坦蕩蕩」、「吞吞吐吐」
+11. ABAA: 例如，「冷氣冷冷」
+12. ABAB: 例如，「慢來慢來」
+13. ABBA: 例如，「你看看你」、「ABBA」(合唱團)
+14. ABBB: 例如，「哇哈哈哈」
+15. AAAA: 例如，「哈哈哈哈」、「嘿嘿嘿嘿」
 
 ```{r}
 classify <- function(idioms) {
@@ -111,11 +115,11 @@ classify <- function(idioms) {
 ##### 請勿更動下方程式碼 #####
 idioms <- c("念茲在茲", "騰雲駕霧", "清清白白", "一五一十", "防不勝防", "哈哈哈哈")
 classify(idioms)
-test_pats <- strsplit("ABCC ABCA ABCB ABAC ABBC AABC AABB ABAB ABBA", " ")[[1]]
-classify(test_pats)
+test_pats <- strsplit("ABCC ABCA ABCB ABAC ABBC AABC AAAB AABA ABAA ABBB AABB ABAB ABBA", " ")[[1]]
+paste(classify(test_pats), collapse = " ")
 # Should print out:
 #> [1] "ABCB" "ABCD" "AABB" "ABAC" "ABCA" "AAAA"
-#> [1] "ABCC" "ABCA" "ABCB" "ABAC" "ABBC" "AABC" "AABB" "ABAB" "ABBA"
+#> [1] "ABCC ABCA ABCB ABAC ABBC AABC AAAB AABA ABAA ABBB AABB ABAB ABBA"
 ```
 
 
@@ -146,20 +150,24 @@ d %>% group_by(class) %>% summarise(count = n())
 #> 3 默默無言 AABC  默    默     無    言    
 #> 4 洋洋自得 AABC  洋    洋     自    得    
 #> 5 誇誇而談 AABC  誇    誇     而    談    
-#> 6 面面相覷 AABC  面    面     相    覷     
+#> 6 面面相覷 AABC  面    面     相    覷    
 #> 
-#> # A tibble: 11 x 2
+#> # A tibble: 15 x 2
 #>    class count
 #>    <chr> <int>
 #>  1 AAAA      1
-#>  2 AABB     60
-#>  3 AABC     78
-#>  4 ABAB      1
-#>  5 ABAC    278
-#>  6 ABBA      1
-#>  7 ABBC      1
-#>  8 ABCA     20
-#>  9 ABCB     44
-#> 10 ABCC     43
-#> 11 ABCD   9174
+#>  2 AAAB      1
+#>  3 AABA      1
+#>  4 AABB     60
+#>  5 AABC     78
+#>  6 ABAA      1
+#>  7 ABAB      1
+#>  8 ABAC    278
+#>  9 ABBA      1
+#> 10 ABBB      1
+#> 11 ABBC      1
+#> 12 ABCA     20
+#> 13 ABCB     44
+#> 14 ABCC     43
+#> 15 ABCD   9174
 ```
