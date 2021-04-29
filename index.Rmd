@@ -1,0 +1,165 @@
+---
+author: "未命名 B01201001 一般系"
+title: "HW 8: 字串處理"
+date: |
+  | 2021-04-29
+  |
+  | [Rmd Source (for TAs)](./index.Rmd){download='`r basename(getwd())`.Rmd'}
+output:
+  html_document:
+    number_sections: yes
+    highlight: tango
+    toc: yes
+    toc_float:
+      collapsed: no
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = '#>',error=TRUE, results = 'hold', out.width='70%', fig.align = 'center', message = FALSE)
+```
+
+
+Warm Up (共 20 分)
+==================
+
+## String Processing without RegEx (20 分)
+
+請寫一個函數 `insert_spaces()`，用來將傳入的字串的各個字元之間插入空白。此函數會在後面的題目用到。
+
+要求：
+
+- 此題**不可**使用到 Regular Expression
+  i.e. 不能使用 `stringr` 以及 
+  base R 的 `grep` 系列函數 (見 `?grep` 內出現的函數)
+- 此題可能會使用到 `strsplit()`, `sapply()` 與 `paste()` 
+```{r}
+insert_spaces <- function(x) {
+  # Write your code here
+}
+
+#### Do not modify the code below ####
+insert_spaces("abc")
+insert_spaces(c("abc", "defg", "12345"))
+# Should print out
+#> [1] "a b c"
+#> [1] "a b c"     "d e f g"   "1 2 3 4 5"
+```
+
+
+成語典處理 (共 100 分)
+======================
+
+## 純文字檔清理 (15 分)
+
+作業的 repo 中有一份純文字檔 `idioms.txt`。`idioms.txt` 是一個成語字典，裡面的每一行是一筆成語的資料，請先觀察這份純文字檔案的規律：
+
+```r
+【澡身浴德】	《禮記·儒行》：“儒有澡身而浴德。”孔穎達疏：“澡身，謂能澡潔其身不染濁也；浴德，謂沐浴於德以德自清也。”謂修養身心，使之高潔。
+【枕麹藉糟】	枕著酒，墊著酒糟。謂嗜酒，醉酒。
+【正本清源】	從根源上進行整頓清理。
+【認雞作鳳】	佛教語。謂認凡庸為珍貴。
+【擊轂摩肩】	形容車馬眾多。語出《戰國策·齊策一》：“臨淄之涂，車轂擊，人肩摩。”
+【鳥覆危巢】	鳥巢因建於弱枝而傾覆。比喻處境極端危險。
+【眼中有鐵】	比喻軍容整肅。語出《資治通鑒·陳世祖天嘉五年》：“春，正月，庚申朔，齊主登北城，軍容甚整。突厥咎周人曰：‘爾言齊亂，故來伐之：今齊人眼中亦有鐵，何可當耶！’”
+...
+```
+
+請將 `idioms.txt` 讀進 R 成一個 character vector (每個元素皆為一筆成語, e.g. `【枕麹藉糟】	枕著酒，墊著酒糟。謂嗜酒，醉酒。`)，並取出位於 `【】` 之內的成語。我們僅需要 **4 字成語**，不在此範圍內的請將其濾掉。請將最後的結果儲存於變數 `idiom`：
+    
+```{r}
+# Write your code here
+
+# 請勿更動下方程式碼
+head(idiom)
+length(idiom)
+sum(is.na(idiom))
+# Should print out:
+#> [1] "澡身浴德" "枕麹藉糟" "正本清源" "認雞作鳳" "擊轂摩肩" "鳥覆危巢"
+#> [1] 9697
+#> [1] 0
+```
+
+<div class="alert alert-success hint">
+1. 你應該會使用到 `readLines()` 以將 `idioms.txt` 讀入
+2. 你應該會使用到 `str_match()` 以取出 `【】` 內的成語
+</div>
+
+
+## 四字格分類器 (60 分)
+
+中文裡面常常出現由四個字組合而成的表達方式，稱為四字格。四字格裡往往可以看到一些語言中的規律。
+你的任務是完成下方的 `classify()`。這個函數可以將輸入的四字格，依據其內部結構，分成 11 種類別：
+
+1.  ABCC: 例如，「氣喘吁吁」、「書空咄咄」
+2.  ABCA: 例如，「精益求精」、「忍無可忍」
+3.  ABCB: 例如，「載舟覆舟」、「屨及劍及」
+4.  ABAC: 例如，「滿坑滿谷」、「不屈不撓」
+5.  ABBC: 例如，「雪山山脈」
+6.  AABC: 例如，「侃侃而談」、「洋洋自得」
+7.  AABB: 例如，「坦坦蕩蕩」、「吞吞吐吐」
+8.  ABAB: 例如，「慢來慢來」
+9.  ABBA: 例如，「ABBA」(合唱團)
+10. ABCD: 例如，「兩全其美」、「有夠討厭」
+11. AAAA: 例如，「哈哈哈哈」、「嘿嘿嘿嘿」
+
+```{r}
+classify <- function(idioms) {
+  # Write your code here
+}
+
+##### 請勿更動下方程式碼 #####
+idioms <- c("念茲在茲", "騰雲駕霧", "清清白白", "一五一十", "防不勝防", "哈哈哈哈")
+classify(idioms)
+test_pats <- strsplit("ABCC ABCA ABCB ABAC ABBC AABC AABB ABAB ABBA", " ")[[1]]
+classify(test_pats)
+# Should print out:
+#> [1] "ABCB" "ABCD" "AABB" "ABAC" "ABCA" "AAAA"
+#> [1] "ABCC" "ABCA" "ABCB" "ABAC" "ABBC" "AABC" "AABB" "ABAB" "ABBA"
+```
+
+
+## 建立 data frame (25 分)
+
+請使用 `classify()`, `insert_spaces()` 以及 `tidyr::separate()` ，將儲存在 `idiom` 中的成語變成一個 data frame 並儲存於變數 `d` 。這個 data frame 必須有 6 個變項 (資料類型皆為 `character`)：
+
+- `idiom`: 本來儲存於變數 `idiom` 中的成語
+- `class`: 依據成語內部結構的分類結果
+- `first`: 該成語的第一個字
+- `second`: 該成語的第二個字
+- `third`: 該成語的第三個字
+- `fourth`: 該成語的第四個字
+
+```{r}
+# Write your code here
+
+##### 請勿更動下方程式碼 #####
+d %>% filter(class == "AABC") %>% tail()
+cat('\n')
+d %>% group_by(class) %>% summarise(count = n())
+# Should print out:
+#> # A tibble: 6 x 6
+#>   idiom    class first second third fourth
+#>   <chr>    <chr> <chr> <chr>  <chr> <chr> 
+#> 1 面面俱圓 AABC  面    面     俱    圓    
+#> 2 碌碌無能 AABC  碌    碌     無    能    
+#> 3 默默無言 AABC  默    默     無    言    
+#> 4 洋洋自得 AABC  洋    洋     自    得    
+#> 5 誇誇而談 AABC  誇    誇     而    談    
+#> 6 面面相覷 AABC  面    面     相    覷     
+#> 
+#> # A tibble: 11 x 2
+#>    class count
+#>    <chr> <int>
+#>  1 AAAA      1
+#>  2 AABB     60
+#>  3 AABC     78
+#>  4 ABAB      1
+#>  5 ABAC    278
+#>  6 ABBA      1
+#>  7 ABBC      1
+#>  8 ABCA     20
+#>  9 ABCB     44
+#> 10 ABCC     43
+#> 11 ABCD   9174
+```
