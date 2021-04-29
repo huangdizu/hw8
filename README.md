@@ -2,7 +2,7 @@
 
 ## 領取作業
 
-1. 前往 <https://classroom.github.com/a/Fca5URmA> 接受作業邀請 (需登入 GitHub, **已確定要修課者**，請**配對姓名**)
+1. 前往 <https://classroom.github.com/a/tupeckUr> 接受作業邀請 (需登入 GitHub, **已確定要修課者**，請**配對姓名**)
 1. 接受作業後，前往**個人作業 repo**  
 (位於 `https://github.com/rlads2021/hw8-<你的 GitHub 帳號>`, e.g. `https://github.com/rlads2021/hw8-liao961120`。這個 repo 只有你和助教看得到)
 1. 使用 GitHub Desktop (或 git command line) 將 `https://github.com/rlads2021/hw8-<你的 GitHub 帳號>.git` clone 到自己電腦上
@@ -16,7 +16,7 @@
 
 ## 注意事項
 
-- 請在**下下週二 (11/12) 18:00** 之前將作業上傳
+- 請在**下週二 18:00** 之前將作業上傳
 - 助教批改作業會以**死限前的最後一次 commit** 為準
 - 請**勿**更改作業檔名 ([`index.Rmd`](./index.Rmd))
 - 請確認將自己的**系級、學號、姓名**寫在作業檔案內 (`index.Rmd` 第 2 行)
@@ -25,7 +25,7 @@
 
 ## 作業說明
 
-作業相關要求寫在作業檔案中： [`index.Rmd`](./index.Rmd)。
+作業相關要求寫在作業檔案中： [`index.Rmd`](./index.Rmd)。輸出的 HTML 版本見：<https://rlads2021.github.io/hw8/>。
 
 ## 尋求幫助
 
