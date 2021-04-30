@@ -375,7 +375,7 @@ div.tocify {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>【鳥覆危巢】  鳥巢因建於弱枝而傾覆。比喻處境極端危險。</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>【眼中有鐵】  比喻軍容整肅。語出《資治通鑒·陳世祖天嘉五年》：“春，正月，庚申朔，齊主登北城，軍容甚整。突厥咎周人曰：‘爾言齊亂，故來伐之：今齊人眼中亦有鐵，何可當耶！’”</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
-<p>請將 <code>idioms.txt</code> 讀進 R 成一個 character vector (每個元素皆為一筆成語, e.g. <code>【枕麹藉糟】 枕著酒，墊著酒糟。謂嗜酒，醉酒。</code>)，並取出位於 <code>【】</code> 之內的成語。我們僅需要 <strong>4 字成語</strong>，不在此範圍內的請將其濾掉。請將最後的結果儲存於變數 <code>idiom</code>：</p>
+<p>請將 <code>idioms.txt</code> 讀進 R 成一個 character vector (每個元素皆為一筆成語或四字格, e.g. <code>【枕麹藉糟】 枕著酒，墊著酒糟。謂嗜酒，醉酒。</code>)，並取出位於 <code>【】</code> 之內的詞彙。我們僅需要 <strong>4 個字組合而成的詞彙</strong>，不在此範圍內的請將其濾掉。請將最後的結果儲存於變數 <code>idiom</code>：</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your code here</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 請勿更動下方程式碼</span></span>
@@ -387,7 +387,7 @@ div.tocify {
 <pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;idiom&#39; not found</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Should print out:</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;澡身浴德&quot; &quot;枕麹藉糟&quot; &quot;正本清源&quot; &quot;認雞作鳳&quot; &quot;擊轂摩肩&quot; &quot;鳥覆危巢&quot;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9697</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9705</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <div class="alert alert-success hint">
 <ol style="list-style-type: decimal">
