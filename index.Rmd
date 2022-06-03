@@ -1,8 +1,8 @@
 ---
-author: "未命名 B01201001 一般系"
+author: "黃柏勳 310708003 交大科管"
 title: "HW 8: 字串處理"
 date: |
-  | 2021-04-29
+  | 2022-06-03
   |
   | [Rmd Source (for TAs)](./index.Rmd){download='`r basename(getwd())`.Rmd'}
 output:
